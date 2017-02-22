@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+/*csslint adjoining-classes:false,box-sizing:false,important:false,rules-count:false,selector-max-approaching:true,universal-selector:false,unqualified-attributes:false*/
+
+/**
+ * Stylesheet: Site Footer.
+ *
+ * @category   Stylesheet
+ * @package    WordPress
+ * @subpackage Slate
+ * @author     Jason D. Moss <jason@jdmlabs.com>
+ * @copyright  2017 Jason D. Moss. All rights freely given.
+ * @version    1.0.0
+ * @license    https://www.jdmlabs.com/license/license-WTFPL-2.txt [WTFPL License]
+ * @link       https://www.jdmlabs.com/
+ */
+
+.site-footer .mobile-nav {
+  display: block;
+  float: left;
+  width: 80%;
+  text-align: right;
+  font-weight: 700;
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 40px;
+  -moz-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+}
+
+/*
+.site-footer {
+  padding-top: 1em;
+  padding-bottom: 3em;
+}
+
+.ego-boost,
+.site-credits {
+  padding: 1em;
+  padding-bottom: 1em;
+  text-align: center;
+}
+
+.ego-boost a {
+  display: block;
+  float: left;
+  width: 100%;
+  padding: 5%;
+  border: none;
+  outline: none;
+  text-align: left;
+}
+
+.ego-boost a i {
+  margin-right: .3em;
+  color: #fff;
+}
+
+.site-credits {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.site-credits > .rights {
+  display: block;
+}
+
+.nav-separator {
+  display: none;
+  margin: 0 .2em;
+  color: #59505e;
+}
+*/
+
+
+
+
+/**
+ * Media Queries.
+ *
+ * --------------------------------------------------------------------------- *
+ */
+
+@media only screen and (min-width:480px) {
+  /**/
+}
+
+@media only screen and (min-width:580px) {
+  /**/
+}
+
+@media only screen and (min-width:640px) {
+  /**/
+}
+
+@media only screen and (min-width:760px) {
+  .site-footer .mobile-nav {
+    display: none;
+  }
+}
+
+@media only screen and (min-width:1000px) {
+  /**/
+}
+
+@media only screen and (min-width:1200px) {
+  /**/
+}
+
+@media only screen and (min-width:1400px) {
+  /**/
+}
+
+/* <> */

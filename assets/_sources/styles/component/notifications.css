@@ -1,0 +1,220 @@
+@charset "UTF-8";
+
+/*csslint adjoining-classes:false,box-sizing:false,important:false,rules-count:false,selector-max-approaching:true,universal-selector:false,unqualified-attributes:false*/
+
+/**
+ * Stylesheet: Messages + Notifications + Errors.
+ *
+ * @category   Stylesheet
+ * @package    WordPress
+ * @subpackage Slate
+ * @author     Jason D. Moss <jason@jdmlabs.com>
+ * @copyright  2017 Jason D. Moss. All rights freely given.
+ * @version    1.0.0
+ * @license    https://www.jdmlabs.com/license/license-WTFPL-2.txt [WTFPL License]
+ * @link       https://www.jdmlabs.com/
+ */
+
+.message.exception,
+.development-bar,
+.php-error {
+  display: block;
+  clear: both;
+  z-index: 1000001 !important;
+  float: left;
+  box-sizing: border-box;
+  opacity: .9;
+}
+
+.message.dump,
+.message.exception,
+.php-error {
+  overflow: auto;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  font: normal normal normal 12px/1.2 Inconsolata, Edlo, 'Courier New', 'Times New Roman', serif;
+  color: #000;
+}
+
+.message.dump {
+  border: 1px solid #0ff;
+  background: #c3ffff;
+}
+
+.php-error {
+  padding: 0 .5em .5em;
+  background: #ffeb00;
+}
+
+.message.exception {
+  position: fixed;
+  bottom: 26px;
+  left: 0;
+  border: solid #b90;
+  border-width: 1px 1px 0;
+  background: #ffd100;
+}
+
+.message.exception .close {
+  z-index: 100001;
+  position: absolute;
+  top: 6px;
+  right: 14px;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.message.exception .close>i {
+  font-size: 24px;
+  color: #950000;
+  opacity: .7;
+}
+
+.message.exception .close>i:focus,
+.message.exception .close>i:hover {
+  opacity: 1;
+}
+
+.message.exception .message.exception-message {
+  margin: 0 0 2em;
+}
+
+.message.dump h4,
+.message.exception h4 {
+  margin: 0 0 .5em;
+  padding: 0;
+  font-weight: 800;
+}
+
+.message.dump h4 {
+  padding: .5em;
+  background-color: #ace0e0;
+  font: normal normal 600 18px/1.2 arial, sans-serif;
+}
+
+.message.exception h4 {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.message.exception code,
+.message.exception p {
+  margin: 0;
+}
+
+.development-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 26px;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #b90;
+  background: #ffd100;
+}
+
+.development-bar>p {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font: normal normal 600 16px/1.5 arial, sans-serif;
+  color: #000;
+}
+
+.notice {
+  box-sizing: border-box !important;
+  display: table;
+  float: left;
+  width: 100%;
+  margin: 10px 0 25px;
+  padding: 0;
+  border-collapse: collapse;
+  box-shadow: 0 3px 3px -3px rgba(0, 0, 0, .2);
+}
+
+.notice.fault {
+  background: #ffdada 0 0 repeat scroll;
+}
+
+.notice.success {
+  background: #eeffd3 0 0 repeat scroll;
+}
+
+.notice.warning {
+  background: #fff9da 0 0 repeat scroll;
+}
+
+.notice>.icon,
+.notice>.message {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.notice>.icon {
+  width: 35px;
+  margin: 0;
+  padding-left: 3px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.notice.fault>.icon {
+  color: #a92020;
+}
+
+.notice.success>.icon {
+  color: #1a801a;
+}
+
+.notice.warning>.icon {
+  color: #805d1a;
+}
+
+.notice>.message {
+  margin: 0 0 0 35px;
+  padding: 6px 20px;
+  background: #fff 0 0 repeat scroll;
+}
+
+
+
+
+/**
+ * Media Queries.
+ *
+ * --------------------------------------------------------------------------- *
+ */
+
+@media only screen and (min-width:480px) {
+  /**/
+}
+
+@media only screen and (min-width:580px) {
+  /**/
+}
+
+@media only screen and (min-width:640px) {
+  /**/
+}
+
+@media only screen and (min-width:760px) {
+  /**/
+}
+
+@media only screen and (min-width:1000px) {
+  /**/
+}
+
+@media only screen and (min-width:1200px) {
+  /**/
+}
+
+@media only screen and (min-width:1400px) {
+  /**/
+}
+
+/* <> */
