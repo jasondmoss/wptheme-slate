@@ -74,11 +74,12 @@ module.exports = function (grunt) {
 
             main: {
                 options: {
-                    sourceMapName: '../min/public.js.map'
+                    sourceMapName: '../min/site.js.map'
                 },
                 files: {
-                    "../min/public.js": [
+                    "../min/site.js": [
                         "scripts/core.js",
+                        "scripts/vendor/*.js",
                         "scripts/module/*.js",
                         "scripts/main.js"
                     ]
@@ -102,7 +103,10 @@ module.exports = function (grunt) {
 
             target: {
                 files: {
-                    "../min/public.css": [
+                    "../min/site.css": [
+
+                        /* Reset. */
+                        "styles/reset.css",
 
                         "styles/vendor/*.css",    /* Vendor specific.                         */
                         "styles/page/*.css",      /* Pages                                    */
@@ -111,9 +115,6 @@ module.exports = function (grunt) {
 
                         /* Global. */
                         "styles/main.css",
-                        "styles/_header.css",
-                        "styles/_footer.css",
-                        "styles/_fonts.css"
                     ]
                 }
             }

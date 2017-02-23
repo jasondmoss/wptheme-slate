@@ -14,16 +14,21 @@
  * @subpackage Slate
  */
 
-?><!doctype html>
-<html class="no-js" <?php language_attributes(); ?>><head>
-<meta charset="<?php bloginfo('charset'); ?>">
-<title><?php wp_title('|', true, 'right'); ?></title>
-<meta name="description" content="<?php bloginfo('description'); ?>" />
-<?php wp_enqueue_style('main', get_template_directory_uri() . '/css/main.css'); ?>
+global $slate;
 
-<link rel="profile" href="http://gmpg.org/xfn/11" />
-<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/images/theme/favicon.ico" />
-<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
+?><!doctype html>
+<html class="no-js" lang="<?php echo $slate->lang; ?>" prefix="
+    xhv: http://www.w3.org/1999/xhtml/vocab#
+    xsd: http://www.w3.org/2001/XMLSchema#
+    rdfs: http://www.w3.org/2000/01/rdf-schema#
+    dc: http://purl.org/dc/terms/
+    vcard: http://www.w3.org/2006/vcard/ns#
+    v: http://rdf.data-vocabulary.org/#"><head>
+<meta charset="<?php echo $slate->charset; ?>">
+<title><?php wp_title('|', true, 'right'); ?></title>
+<meta name="description" content="<?php bloginfo('description'); ?>">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="shortcut icon" href="<?php echo "{$slate->url->images}"; ?>/favicon.ico">
 
 <?php wp_head(); ?>
 

@@ -7,6 +7,7 @@
  * @author Rafal Gicgier rafal@xfive.co
  */
 
+
 class SlateSettings
 {
 
@@ -25,15 +26,27 @@ class SlateSettings
 
 
     /**
-     * Utility that registers setting, adds setting section and adds field for each
-     * field provided through config array
+     * Utility that registers setting, adds setting section and adds field for
+     * each field provided through config array.
      *
      * @hook admin_init
      */
     public function adminInit()
     {
-        register_setting('slateOptions', 'slateOptions', [$this, 'optionsValidate']);
-        add_settings_section('slateMain', 'Main Settings', [$this, 'optionsText'], 'slateSettings');
+        /**
+         * Register Slate Options.
+         */
+        register_setting(
+            'slate_options',
+            'slate_options',
+            [$this, 'optionsValidate']
+        );
+        add_settings_section(
+            'footer',
+            'Footer Profile Links',
+            [$this, 'optionsText'],
+            'slate-theme-options'
+        );
 
         foreach ($this->settings as $option) {
             if (isset($option['generate_field_callback']) && isset($option['validate_field_callback'])) {
@@ -41,8 +54,8 @@ class SlateSettings
                     $option['name'],
                     $option['desc'],
                     $option['generate_field_callback'],
-                    'slateSettings',
-                    'slateMain',
+                    'slate-theme-options',
+                    'footer',
                     $option
                 );
 
@@ -53,8 +66,8 @@ class SlateSettings
                 $option['name'],
                 $option['desc'],
                 [$this, 'optionsGenerateFields'],
-                'slateSettings',
-                'slateMain',
+                'slate-theme-options',
+                'footer',
                 $option
             );
         }
@@ -62,56 +75,63 @@ class SlateSettings
 
 
     /**
-     * Generate section's text
+     * Generate section's text.
      */
     public function optionsText()
     {
-        echo '<p>Change the footer settings here.</p>';
+        echo '<p>'. __('Change the footer settings here.', 'slate') .'</p>';
     }
 
 
     /**
-     * Generates fields for each option specified
+     * Generates fields for each option specified.
      *
-     * @param {array of strings} $option
+     * @param array $option
      */
     public function optionsGenerateFields($option)
     {
-        if ('text' == $option['type']) {
-            $this->optionsGenerateField($option);
-        } elseif ('dropdown_pages' == $option['type']) {
-            $this->generateDropdownPagesField($option);
-        } elseif ('wp_editor' == $option['type']) {
-            $this->generateWpEditor($option);
+        switch ($option['type']) {
+            /**
+             * Text input field.
+             */
+            case 'text':
+                $this->optionsGenerateField($option);
+                break;
+
+            /**
+             * <select> dropdown field.
+             */
+            case 'dropdown_pages':
+                $this->generateDropdownPagesField($option);
+                break;
+
+            /**
+             * Rich Text Editer.
+             */
+            case 'wp_editor':
+                $this->generateWpEditor($option);
+                break;
         }
     }
 
 
     /**
-     * Validates the input
+     * Validates the input.
      *
-     * @param {mixed} $input
-     * @return {mixed}
+     * @param mixed $input
+     *
+     * @return mixed
      */
     public function optionsValidate($input)
     {
         $valid = [];
-
         foreach ($this->settings as $option) {
             if (isset($option['validate_field_callback'])) {
-                $valid[ $option['name'] ] = call_user_func($option['validate_field_callback'], $input);
+                $valid[$option['name']] = call_user_func($option['validate_field_callback'], $input);
                 continue;
             }
 
-            if ('text' == $option['type']) {
-                $valid[$option['name']] = $input[$option['name']];
-            } elseif ('dropdown_pages' == $option['type']) {
-                $valid[$option['name']] = $input[$option['name']];
-            } elseif ('wp_editor' == $option['type']) {
-                $valid[$option['name']] = $input[$option['name']];
-            }
-
-            // @todo if
+            $valid[$option['name']] = $input[$option['name']];
         }
 
         return $valid;
@@ -129,31 +149,39 @@ class SlateSettings
 
     <div class="wrap">
         <?php
-        if (isset($_GET['settings-updated'])) { // input var okay
+
+        if (isset($_GET['settings-updated'])) {
             echo "<div class='updated'><p>Theme settings updated successfully.</p></div>";
         }
-        ?>
 
-        <?php
-        // @todo http://codex.wordpress.org/Function_Reference/get_settings_errors
-        $errors = get_settings_errors();
-
-        if ($errors) {
-            echo "<div class='error'>";
+        /**
+         * @todo http://codex.wordpress.org/Function_Reference/get_settings_errors
+         */
+        if ($errors = get_settings_errors()) {
+            echo "\n\n<div class=\"error\">";
             foreach ($errors as $error) {
                 echo esc_html($error['message']);
             }
-            echo '</div>';
+            echo "</div>\n\n";
         }
-        ?>
 
-      <form action="options.php" method="post">
-        <?php
-        settings_fields('slateOptions');
-        do_settings_sections('slateSettings');
         ?>
-        <br />
-        <input name="slateOptions[submit]" type="submit" class="button-primary" value="<?php esc_attr_e('Save Settings', 'slate'); ?>" />
+      <form action="<?php echo admin_url('options.php'); ?>" method="post">
+        <?php
+
+        settings_fields('slate_options');
+
+        do_settings_sections('slate-theme-options');
+
+        submit_button(
+            __('Save Settings', 'slate'),
+            'primary',
+            'slate_options[submit]',
+            true,
+            []
+        );
+
+        ?>
       </form>
     </div>
 
@@ -162,7 +190,7 @@ class SlateSettings
 
 
     /**
-    * Adds theme options page
+    * Adds theme options page.
     *
     * @hook admin_menu
     */
@@ -172,7 +200,7 @@ class SlateSettings
             'Theme Options',
             'Theme Options',
             'manage_options',
-            'slateSettings',
+            'slate-theme-options',
             [$this, 'doOptionsPage']
         );
     }
@@ -182,41 +210,33 @@ class SlateSettings
 
 
     /**
-     * Generates text field
+     * Generates text field.
      *
-     * @param {array of strings} $option
+     * @param array $option
      */
     private function optionsGenerateField($option)
     {
-        $options = get_option('slateOptions');
-        if (! empty($options[ $option['name'] ])) {
-            echo esc_attr(
-                "<input id=\"{$option['name']}\" name=\"slateOptions[{$option['name']}]\" type=\"text\" size=\"80\"".
-                " value=\"{$options[ $option['name'] ]}\" />"
-            );
-        } else {
-            echo esc_attr(
-                "<input id=\"{$option['name']}\" name=\"slateOptions[{$option['name']}]\" type=\"text\" size=\"80\"".
-                " value=\"\" />"
-            );
-        }
+        $options = get_option('slate_options');
+
+        echo "<input id=\"{$option['name']}\" name=\"slate_options[{$option['name']}]\" type=\"text\" value=\"".
+            (!empty($options[$option['name']]) ? esc_attr($options[$option['name']]) : '') ."\" size=\"80\">";
     }
 
 
     /**
-     * Generates dropdown of all listed pages
+     * Generates dropdown of all listed pages.
      *
-     * @param {array of strings} $option
+     * @param array $option
      */
     private function generateDropdownPagesField($option)
     {
-        $options = get_option('slateOptions');
+        $options = get_option('slate_options');
         $args = !empty($options[$option['name']])
             ? [
                 'selected' => $options[$option['name']],
-                'name'     => "slateOptions[{$option['name']}]",
+                'name'     => "slate_options[{$option['name']}]",
             ] : [
-                'name' => "slateOptions[{$option['name']}]",
+                'name' => "slate_options[{$option['name']}]",
             ];
 
         wp_dropdown_pages($args);
@@ -224,30 +244,18 @@ class SlateSettings
 
 
     /**
-     * Generates wp_editor textarea
+     * Generates wp_editor textarea.
      *
-     * @param {array of strings} $option
+     * @param array $option
      */
     private function generateWpEditor($option)
     {
-        $options = get_option('slateOptions');
+        $options = get_option('slate_options');
         $settings = [
-            'textarea_name' => "slateOptions[{$option['name']}]",
+            'textarea_name' => "slate_options[{$option['name']}]",
             'media_buttons' => false,
             'wpautop'       => true
         ];
-
-        // if (!empty($options[$option['name']])) {
-        //     wp_editor($options[ $option['name'] ], $option['name'], $settings);
-        // } else {
-        //     wp_editor('', $option['name'], $settings);
-        // }
-
-        // wp_editor(
-        //     (!empty($options[$option['name']]) ? $options[$option['name']] : ''),
-        //     $option['name'],
-        //     $settings
-        // );
 
         wp_editor($options[$option['name']], $option['name'], $settings);
     }
