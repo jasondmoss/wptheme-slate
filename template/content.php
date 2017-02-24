@@ -1,29 +1,30 @@
 <?php
 
 /**
- * Slate: content-single
+ * Template Partial: Content Single
  *
- * The template for displaying content after all other content-{template} files
- * were either not used or not found, see:
- * http://codex.wordpress.org/Function_Reference/get_template_part
- *
- * @package WordPress
+ * @package    WordPress
  * @subpackage Slate
+ * @author     Jason D. Moss <jason@jdmlabs.com>
+ * @copyright  2017 Jason D. Moss. All rights freely given.
+ * @version    0.1.0
+ * @license    https://github.com/jasondmoss/wptheme-slate/blob/master/LICENSE.md [WTFPL License]
+ * @link       https://www.jdmlabs.com/
  */
+
 ?>
 
-<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+  <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+    <a href="<?php echo esc_attr(get_permalink()); ?>"><?php the_title(); ?></a>
+    <?php
 
-  <a href="<?php echo esc_attr(get_permalink()); ?>"><?php the_title(); ?></a>
+    the_time('m/d/Y');
 
-    <?php the_time('m/d/Y'); ?>
-    <?php // http://codex.wordpress.org/Formatting_Date_and_Time ?>
+    if (has_post_thumbnail()) {
+        the_post_thumbnail();
+    }
 
-    <?php if (has_post_thumbnail()) { the_post_thumbnail(); } ?>
-
-  <div class="content"> <?php the_content(); ?></div>
-
+    ?>
+    <div class="content"> <?php the_content(); ?></div>
     <?php comments_template() ?>
-
-</div>
-<!-- / post -->
+  </div>

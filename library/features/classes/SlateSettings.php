@@ -1,18 +1,33 @@
 <?php
 
 /**
+ * Feature: .
  *
- * @package WordPress
- * @subpackage Slate Theme
- * @author Rafal Gicgier rafal@xfive.co
+ * @package    WordPress
+ * @subpackage Slate
+ * @author     Jason D. Moss <jason@jdmlabs.com>
+ * @copyright  2017 Jason D. Moss. All rights freely given.
+ * @version    0.1.0
+ * @license    https://github.com/jasondmoss/wptheme-slate/blob/master/LICENSE.md [WTFPL License]
+ * @link       https://www.jdmlabs.com/
  */
 
 
 class SlateSettings
 {
 
+    /**
+     * @var array
+     * @access private
+     */
     private $settings = [];
 
+
+    /**
+     * Constructor.
+     *
+     * @param array $args
+     */
     public function __construct($args = [])
     {
         $this->settings = $args;
@@ -41,6 +56,7 @@ class SlateSettings
             'slate_options',
             [$this, 'optionsValidate']
         );
+
         add_settings_section(
             'footer',
             'Footer Profile Links',
@@ -231,13 +247,12 @@ class SlateSettings
     private function generateDropdownPagesField($option)
     {
         $options = get_option('slate_options');
-        $args = !empty($options[$option['name']])
-            ? [
-                'selected' => $options[$option['name']],
-                'name'     => "slate_options[{$option['name']}]",
-            ] : [
-                'name' => "slate_options[{$option['name']}]",
-            ];
+        $args = !empty($options[$option['name']]) ? [
+            'selected' => $options[$option['name']],
+            'name'     => "slate_options[{$option['name']}]",
+        ] : [
+            'name' => "slate_options[{$option['name']}]",
+        ];
 
         wp_dropdown_pages($args);
     }

@@ -1,12 +1,15 @@
 <?php
 
 /**
- * Slate: Comments Handler
+ * Template: Comments
  *
- * Cover the comments logic here (Shamelessly stolen from Twenty Eleven).
- *
- * @package WordPress
+ * @package    WordPress
  * @subpackage Slate
+ * @author     Jason D. Moss <jason@jdmlabs.com>
+ * @copyright  2017 Jason D. Moss. All rights freely given.
+ * @version    0.1.0
+ * @license    https://github.com/jasondmoss/wptheme-slate/blob/master/LICENSE.md [WTFPL License]
+ * @link       https://www.jdmlabs.com/
  */
 
 if (post_password_required()) {

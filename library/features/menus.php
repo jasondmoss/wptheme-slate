@@ -1,17 +1,30 @@
 <?php
 
-if (current_theme_supports('menus')) {
-    $menus = get_theme_support('menus');
+/**
+ * Feature: Menus
+ *
+ * @package    WordPress
+ * @subpackage Slate
+ * @author     Jason D. Moss <jason@jdmlabs.com>
+ * @copyright  2017 Jason D. Moss. All rights freely given.
+ * @version    0.1.0
+ * @license    https://github.com/jasondmoss/wptheme-slate/blob/master/LICENSE.md [WTFPL License]
+ * @link       https://www.jdmlabs.com/
+ */
 
-    // if some parameters have been added to the menus
-    $menus = is_array($menus[0]) ? $menus[0] : [
-        'navigation-top' => __('Top Navigation Menu')
-    ];
 
-    register_nav_menus($menus);
+add_action('slate_head', 'defaultMenu');
 
-    add_action('slate_head', 'default_menu');
-}
+
+/* -- */
+
+
+$menus = get_theme_support('menus');
+$menus = is_array($menus[0]) ? $menus[0] : [
+    'navigation-top' => __('Top Navigation Menu')
+];
+
+register_nav_menus($menus);
 
 
 /**
@@ -19,7 +32,7 @@ if (current_theme_supports('menus')) {
  *
  * @hook slate_head
  */
-function default_menu()
+function defaultMenu()
 {
     if (has_nav_menu('navigation-top')) {
         wp_nav_menu([

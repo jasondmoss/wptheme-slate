@@ -1,13 +1,15 @@
 <?php
 
 /**
- * Slate: Archive page
+ * Template: Archive
  *
- * Archive page lists all posts belonging to monthly / weekly / daily archives
- * it's a good idea to have a drawback method in case no posts were found
- *
- * @package WordPress
+ * @package    WordPress
  * @subpackage Slate
+ * @author     Jason D. Moss <jason@jdmlabs.com>
+ * @copyright  2017 Jason D. Moss. All rights freely given.
+ * @version    0.1.0
+ * @license    https://github.com/jasondmoss/wptheme-slate/blob/master/LICENSE.md [WTFPL License]
+ * @link       https://www.jdmlabs.com/
  */
 
 include "{$slate->dir->partials}/site-header.php";

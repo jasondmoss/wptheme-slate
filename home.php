@@ -1,13 +1,15 @@
 <?php
 
 /**
- * Slate: Home
+ * Template: Home
  *
- * Overwritten by Front Page if specific settings are set.
- * See: http://codex.wordpress.org/Creating_a_Static_Front_Page
- *
- * @package WordPress
+ * @package    WordPress
  * @subpackage Slate
+ * @author     Jason D. Moss <jason@jdmlabs.com>
+ * @copyright  2017 Jason D. Moss. All rights freely given.
+ * @version    0.1.0
+ * @license    https://github.com/jasondmoss/wptheme-slate/blob/master/LICENSE.md [WTFPL License]
+ * @link       https://www.jdmlabs.com/
  */
 
 include "{$slate->dir->partials}/site-header.php";

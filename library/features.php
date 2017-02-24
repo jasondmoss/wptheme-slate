@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Theme features.
+ * Theme: Features
  *
  * @package    WordPress
  * @subpackage Slate
@@ -30,27 +30,63 @@ add_action('init', function () {
 /* -- */
 
 
+/**
+ * Clean SEO title.
+ */
 add_theme_support('seoTitle');
+
+
+/**
+ * Comments.
+ */
 add_theme_support('comments');
+
+
+/**
+ * Threaded comments.
+ */
 add_theme_support('commentsThreaded');
 
-// add two navigation menus
+
+/**
+ * Custom menus.
+ */
 add_theme_support('menus', [
     'navigation-top'  => __('Top Navigation Menu', 'slate'),
     'navigation-foot' => __('Footer Navigation Menu', 'slate')
 ]);
 
-// add 3 default sidebars
-add_theme_support('sidebars', [ [], [], [] ]);
 
+/**
+ * Sidebar locations.
+ *
+ * @todo Expand this for further customization.
+ */
+add_theme_support('sidebars', [
+    [ /**/ ],
+    [ /**/ ],
+    [ /**/ ]
+]);
+
+
+/**
+ * Custom image sizes.
+ */
 add_theme_support('images', [
-    '400x500' => [
-        'width'  => '400',
-        'height' => '500',
+    /**
+     * Extra Large.
+     */
+    '1920x1080' => [
+        'width'  => '1920',
+        'height' => '1080',
         'crop'   => true
     ]
 ]);
 
+
+/**
+ * Custom post type(s).
+ */
 add_theme_support('customPostType', [
     /**
      * Team post.
@@ -66,6 +102,10 @@ add_theme_support('customPostType', [
     ]
 ]);
 
+
+/**
+ * Custom taxonomy(ies).
+ */
 add_theme_support('customTaxonomy', [
     /**
      * Taxonomy like category.
@@ -83,6 +123,10 @@ add_theme_support('customTaxonomy', [
     ],
 ]);
 
+
+/**
+ * Custom theme settings.
+ */
 add_theme_support('settings', [
     /**
      *

@@ -1,8 +1,7 @@
 <?php
 
 /**
- * Slate
- * Theme specific functionalities.
+ * Slate theme-specific functionalities.
  *
  * @package    WordPress
  * @subpackage Slate
@@ -66,6 +65,11 @@ $slate = (object) [
         'images' => "{$themeUri}/assets/image"
     ],
 
+    /**
+     * JavaScript variables.
+     *
+     * @see https://codex.wordpress.org/Function_Reference/wp_localize_script
+     */
     'localization' => [
         /**/
     ]
