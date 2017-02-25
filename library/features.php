@@ -81,7 +81,7 @@ add_theme_support('images', [
     /**
      * Extra Large.
      */
-    '1920x1080' => [
+    'X-Large' => [
         'width'  => '1920',
         'height' => '1080',
         'crop'   => true
