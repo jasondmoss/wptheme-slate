@@ -24,7 +24,6 @@
  */
 $path = __DIR__ .'/features/';
 add_action('init', function () use ($path) {
-    $features = [];
     foreach (new DirectoryIterator($path) as $feature) {
         if ($feature->isDir() && !$feature->isDot() && current_theme_supports($feature->getFilename())) {
             require_once "{$path}{$feature}/{$feature}.php";
