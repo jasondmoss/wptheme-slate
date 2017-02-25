@@ -12,6 +12,6 @@
  * @link       https://www.jdmlabs.com/
  */
 
-dynamic_sidebar('Sidebar');
+dynamic_sidebar('sidebar');
 
 /* <> */

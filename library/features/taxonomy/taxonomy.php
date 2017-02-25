@@ -13,7 +13,7 @@
  */
 
 
-$taxonomies = get_theme_support('customTaxonomy');
+$taxonomies = get_theme_support('taxonomy');
 if (is_array($taxonomies[0])) {
     $taxonomies = $taxonomies[0];
     $defaults = [

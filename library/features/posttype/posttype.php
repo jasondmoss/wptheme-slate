@@ -13,7 +13,7 @@
  */
 
 
-$cpt = get_theme_support('customPostType');
+$cpt = get_theme_support('posttype');
 if (is_array($cpt[0])) {
     $cpt = $cpt[0];
     $defaults = [

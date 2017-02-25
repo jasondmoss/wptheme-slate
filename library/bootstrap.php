@@ -16,17 +16,6 @@
 // add_action('admin_enqueue_scripts', 'slateAdminAssets');
 add_action('wp_enqueue_scripts', 'slateSiteAssets');
 
-/**
- * Custom canonical URL.
- */
-if (!function_exists('aioseop_init_class') ||
-    !defined('THE_SEO_FRAMEWORK_DIR_PATH') ||
-    !class_exists('WPSEO_Frontend')
-) {
-    remove_action('wp_head', 'rel_canonical');
-    add_action('wp_head', 'slateRelCanonical');
-}
-
 
 /* -- */
 
@@ -70,24 +59,6 @@ function slateSiteAssets()
 
     wp_enqueue_style('slate-public-styles');
     wp_enqueue_script('slate-public-scripts');
-}
-
-
-/**
- * Canonical URL.
- *
- * @access public
- */
-function slateRelCanonical()
-{
-    global $wp_the_query;
-
-    if (!is_singular() || !$queriedId = $wp_the_query->get_queried_object_id()) {
-        return false;
-    }
-
-    $link = get_permalink($queriedId);
-    echo "\n<link rel=\"canonical\" href=\"{$link}\">";
 }
 
 /* <> */

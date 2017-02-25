@@ -44,21 +44,18 @@ add_theme_support('seoTitle');
 /**
  * Comments.
  */
-add_theme_support('comments');
-
-
-/**
- * Threaded comments.
- */
-add_theme_support('commentsThreaded');
+add_theme_support('comments', [
+    'threaded' => true
+]);
 
 
 /**
  * Custom menus.
  */
 add_theme_support('menus', [
-    'navigation-top'  => __('Top Navigation Menu', 'slate'),
-    'navigation-foot' => __('Footer Navigation Menu', 'slate')
+    'navigation-header' => __('Site Header Menu', 'slate'),
+    'navigation-footer' => __('Site Footer Menu', 'slate'),
+    'navigation-mobile' => __('Mobile Menu', 'slate')
 ]);
 
 
@@ -68,6 +65,8 @@ add_theme_support('menus', [
  * @todo Expand this for further customization.
  */
 add_theme_support('sidebars', [
+    [ /**/ ],
+    [ /**/ ],
     [ /**/ ],
     [ /**/ ],
     [ /**/ ]
@@ -81,7 +80,7 @@ add_theme_support('images', [
     /**
      * Extra Large.
      */
-    'X-Large' => [
+    'xlarge' => [
         'width'  => '1920',
         'height' => '1080',
         'crop'   => true
@@ -90,9 +89,9 @@ add_theme_support('images', [
 
 
 /**
- * Custom post type(s).
+ * Custom Post Type.
  */
-add_theme_support('customPostType', [
+add_theme_support('posttype', [
     /**
      * Project.
      */
@@ -109,9 +108,9 @@ add_theme_support('customPostType', [
 
 
 /**
- * Custom taxonomy(ies).
+ * Custom taxonomy.
  */
-add_theme_support('customTaxonomy', [
+add_theme_support('taxonomy', [
     /**
      * Client.
      */

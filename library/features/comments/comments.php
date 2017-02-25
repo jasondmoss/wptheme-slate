@@ -13,6 +13,20 @@
  */
 
 
+$comments = get_theme_support('comments');
+if (true === $comments[0]['threaded']) {
+    /**
+     * Add threaded comment if enabled.
+     *
+     * @hook after_setup_theme
+     */
+    add_action('after_setup_theme', function () {
+        if (is_singular() && get_option('thread_comments')) {
+            wp_enqueue_script('comment-reply');
+        }
+    });
+}
+
 add_filter('comment_form_default_fields', 'slateCommentFields');
 
 
