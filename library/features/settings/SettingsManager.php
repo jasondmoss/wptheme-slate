@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Feature: .
+ * Feature Class: Settings
  *
  * @package    WordPress
  * @subpackage Slate
@@ -12,8 +12,9 @@
  * @link       https://www.jdmlabs.com/
  */
 
+namespace Slate\Library\Features\Settings;
 
-class SlateSettings
+class SettingsManager
 {
 
     /**

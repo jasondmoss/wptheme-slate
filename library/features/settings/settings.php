@@ -12,14 +12,13 @@
  * @link       https://www.jdmlabs.com/
  */
 
+use \Slate\Library\Features\Settings\SettingsManager;
+
+require_once __DIR__ .'/SettingsManager.php';
 
 $settings = get_theme_support('settings');
-if (is_array($settings[0])) {
-    require_once __DIR__ .'/classes/SlateSettings.php';
-
-    if (class_exists('SlateSettings')) {
-        $settings = new SlateSettings($settings[0]);
-    }
+if (class_exists("\\Slate\\Library\\Features\\Settings\\SettingsManager")) {
+    $settings = new SettingsManager($settings[0]);
 }
 
 /* <> */

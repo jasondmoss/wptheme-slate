@@ -14,14 +14,20 @@
 
 
 /**
- * Recursively loads selected feature files.
+ * Recursively scans feature directories, then loads each 'supported' feature
+ * file.
  *
- * @see http://php.net/manual/en/function.glob.php
+ * @param string $path
+ *
+ * @uses \DirectoryIterator
+ * @see http://php.net/manual/en/directoryiterator.construct.php
  */
-add_action('init', function () {
-    foreach (glob(__DIR__ .'/features/*.php') as $feature) {
-        if (current_theme_supports(basename($feature, '.php'))) {
-            require_once $feature;
+$path = __DIR__ .'/features/';
+add_action('init', function () use ($path) {
+    $features = [];
+    foreach (new DirectoryIterator($path) as $feature) {
+        if ($feature->isDir() && !$feature->isDot() && current_theme_supports($feature->getFilename())) {
+            require_once "{$path}{$feature}/{$feature}.php";
         }
     }
 });
@@ -89,14 +95,14 @@ add_theme_support('images', [
  */
 add_theme_support('customPostType', [
     /**
-     * Team post.
+     * Project.
      */
-    'slate-team' => [
-        'singular'           => 'Team Member',
-        'plural'             => 'Team Members',
+    'pt_project' => [
+        'singular'           => 'Project',
+        'plural'             => 'Projects',
         'publicly_queryable' => true,
         'rewrite'            => [
-            'slug'       => 'team',
+            'slug'       => 'project',
             'with_front' => true
         ]
     ]
@@ -108,19 +114,34 @@ add_theme_support('customPostType', [
  */
 add_theme_support('customTaxonomy', [
     /**
-     * Taxonomy like category.
+     * Client.
      */
-    'slate-team-tag' => [
-        'singular' => 'Member Category',
-        'plural'   => 'Member Categories',
+    'tx_client' => [
+        'singular' => 'Client',
+        'plural'   => 'Clients',
         'rewrite'  => [
-            'slug'       => 'category',
+            'slug'       => 'client',
             'with_front' => false
         ],
         'posts' => [
-            'slate-team'
+            'pt_project'
         ],
     ],
+
+    /**
+     * Industry.
+     */
+    'tx_industry' => [
+        'singular' => 'Industry',
+        'plural'   => 'Industries',
+        'rewrite'  => [
+            'slug'       => 'industry',
+            'with_front' => false
+        ],
+        'posts' => [
+            'pt_project'
+        ],
+    ]
 ]);
 
 
