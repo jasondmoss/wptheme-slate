@@ -175,4 +175,10 @@ add_theme_support('settings', [
     ]
 ]);
 
+
+/**
+ * WooCommerce.
+ */
+// add_theme_support('woocommerce');
+
 /* <> */
