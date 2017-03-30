@@ -30,10 +30,10 @@ function slateAdminAssets()
 {
     global $slate;
 
-    // $append = strToTime('today midnight');
+    $append = false; /*strToTime('today midnight');*/
 
-    wp_register_style('slate-admin-styles', "{$slate->url->assets}/slate-admin.css", [], false/*$append*/, 'all');
-    wp_register_script('slate-admin-script', "{$slate->url->assets}/slate-admin.js", [], false/*$append*/, true);
+    wp_register_style('slate-admin-styles', "{$slate->url->assets}/slate-admin.css", [], $append, 'all');
+    wp_register_script('slate-admin-script', "{$slate->url->assets}/slate-admin.js", [], $append, true);
     wp_localize_script('slate-admin-script', 'Slate=Slate||{};Slate.Settings', $slate->localization);
 
     wp_enqueue_style('slate-admin-styles');
@@ -51,10 +51,10 @@ function slateSiteAssets()
 {
     global $slate;
 
-    // $append = strToTime('today midnight');
+    $append = false; /*strToTime('today midnight');*/
 
-    wp_register_style('slate-public-styles', "{$slate->url->assets}/site.css", [], false/*$append*/, 'all');
-    wp_register_script('slate-public-scripts', "{$slate->url->assets}/site.js", [], false/*$append*/, true);
+    wp_register_style('slate-public-styles', "{$slate->url->assets}/site.css", [], $append, 'all');
+    wp_register_script('slate-public-scripts', "{$slate->url->assets}/site.js", [], $append, true);
     wp_localize_script('slate-public-scripts', 'Slate=Slate||{};Slate.Settings', $slate->localization);
 
     wp_enqueue_style('slate-public-styles');
